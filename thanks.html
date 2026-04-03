@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | Northeast Decorative Concrete, LLC</title>
+    <meta name="description"
+        content="Thank you for contacting Northeast Decorative Concrete, LLC. We received your message and will reach out shortly.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <!-- Prevent search engines from indexing this confirmation page -->
+    <meta name="robots" content="noindex, nofollow">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Thank You Page Specific Styles */
+        .thanks-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px;
+            background: linear-gradient(rgba(28, 25, 23, 0.7), rgba(28, 25, 23, 0.8)),
+                url('images/hero_concrete_patio.png') center/cover no-repeat;
+            color: var(--text-light);
+        }
+
+        .thanks-hero .hero-content {
+            max-width: 800px;
+            text-align: center;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.3s;
+        }
+
+        .thanks-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+        }
+
+        .thanks-hero h1 span {
+            color: var(--primary);
+        }
+
+        .thanks-hero p {
+            font-size: 1.25rem;
+            color: #d6d3d1;
+        }
+
+        /* Animated Success Checkmark */
+        .success-checkmark {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards 0.5s;
+            opacity: 0;
+            transform: scale(0);
+            box-shadow: 0 8px 30px rgba(217, 119, 6, 0.35);
+        }
+
+        .success-checkmark i {
+            font-size: 3rem;
+            color: #fff;
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Confirmation Card */
+        .confirmation-card {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            border-top: 4px solid var(--primary);
+        }
+
+        .confirmation-card h2 {
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .confirmation-card p {
+            color: var(--concrete);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .confirmation-card .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* What to Expect Timeline */
+        .expect-section {
+            margin-top: 2.5rem;
+            text-align: left;
+        }
+
+        .expect-section h3 {
+            font-size: 1.35rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+        }
+
+        .timeline-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+        }
+
+        .timeline-content h4 {
+            font-size: 1.05rem;
+            color: var(--secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-content p {
+            color: var(--concrete);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Quick Navigation Cards */
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .nav-card {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .nav-card-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.25rem;
+            background-color: var(--bg-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-card:hover .nav-card-icon {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+        }
+
+        .nav-card h4 {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-card p {
+            color: var(--concrete);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .nav-card .card-link {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: var(--transition);
+        }
+
+        .nav-card:hover .card-link {
+            color: var(--primary-dark);
+            gap: 0.75rem;
+        }
+
+        /* Contact Info Bar */
+        .contact-bar {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            padding: 1.5rem 2rem;
+            border-radius: var(--border-radius);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-bar a {
+            color: #fff;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .contact-bar a:hover {
+            opacity: 0.85;
+        }
+
+        @media (max-width: 768px) {
+            .confirmation-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .nav-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-bar {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                Northeast Decorative <span>Concrete, LLC</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <div class="dropdown">
+                    <a href="services.html" class="nav-link">Services</a>
+                    <button class="dropdown-toggle-btn" aria-label="Toggle services menu"><i
+                            class="fas fa-chevron-down"></i></button>
+                    <div class="dropdown-menu">
+                        <a href="stampedconcretepatios.html" class="dropdown-item">Stamped Concrete Patios</a>
+                        <a href="resealingstampedconcrete.html" class="dropdown-item">Resealing Stamped Concrete</a>
+                        <a href="stampedconcretepooldecks.html" class="dropdown-item">Stamped Concrete Pool Decks</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="areas-we-service.html" class="nav-link">Areas We Service</a>
+                    <button class="dropdown-toggle-btn" aria-label="Toggle areas menu"><i
+                            class="fas fa-chevron-down"></i></button>
+                    <div class="dropdown-menu">
+                        <a href="StampedConcreteAllenstownNH.html" class="dropdown-item">Allenstown</a>
+                        <a href="StampedConcreteAmherstNH.html" class="dropdown-item">Amherst</a>
+                        <a href="StampedConcreteAtkinsonNH.html" class="dropdown-item">Atkinson</a>
+                        <a href="StampedConcreteAuburnNH.html" class="dropdown-item">Auburn</a>
+                        <a href="StampedConcreteBedfordNH.html" class="dropdown-item">Bedford</a>
+                        <a href="StampedConcreteBowNH.html" class="dropdown-item">Bow</a>
+                        <a href="StampedConcreteBrentwoodNH.html" class="dropdown-item">Brentwood</a>
+                        <a href="StampedConcreteBrooklineNH.html" class="dropdown-item">Brookline</a>
+                        <a href="StampedConcreteCandiaNH.html" class="dropdown-item">Candia</a>
+                        <a href="StampedConcreteCanterburyNH.html" class="dropdown-item">Canterbury</a>
+                        <a href="StampedConcreteChesterNH.html" class="dropdown-item">Chester</a>
+                        <a href="StampedConcreteConcordNH.html" class="dropdown-item">Concord</a>
+                        <a href="StampedConcreteDeerfieldNH.html" class="dropdown-item">Deerfield</a>
+                        <a href="StampedConcreteDunbartonNH.html" class="dropdown-item">Dunbarton</a>
+                        <a href="StampedConcreteEppingNH.html" class="dropdown-item">Epping</a>
+                        <a href="StampedConcreteExeterNH.html" class="dropdown-item">Exeter</a>
+                        <a href="StampedConcreteFremontNH.html" class="dropdown-item">Fremont</a>
+                        <a href="StampedConcreteGilfordNH.html" class="dropdown-item">Gilford</a>
+                        <a href="StampedConcreteHollisNH.html" class="dropdown-item">Hollis</a>
+                        <a href="StampedConcreteHooksettNH.html" class="dropdown-item">Hooksett</a>
+                        <a href="StampedConcreteHopkintonNH.html" class="dropdown-item">Hopkinton</a>
+                        <a href="StampedConcreteKingstonNH.html" class="dropdown-item">Kingston</a>
+                        <a href="StampedConcreteLaconiaNH.html" class="dropdown-item">Laconia</a>
+                        <a href="StampedConcreteLeeNH.html" class="dropdown-item">Lee</a>
+                        <a href="StampedConcreteLondonderryNH.html" class="dropdown-item">Londonderry</a>
+                        <a href="StampedConcreteManchesterNH.html" class="dropdown-item">Manchester</a>
+                        <a href="StampedConcreteMeredithNH.html" class="dropdown-item">Meredith</a>
+                        <a href="StampedConcreteMerrimackNH.html" class="dropdown-item">Merrimack</a>
+                        <a href="StampedConcreteMilfordNH.html" class="dropdown-item">Milford</a>
+                        <a href="StampedConcreteMontVernonNH.html" class="dropdown-item">Mont Vernon</a>
+                        <a href="StampedConcreteNashuaNH.html" class="dropdown-item">Nashua</a>
+                        <a href="StampedConcreteNorthHamptonNH.html" class="dropdown-item">North Hampton</a>
+                        <a href="StampedConcreteNottinghamNH.html" class="dropdown-item">Nottingham</a>
+                        <a href="StampedConcretePelhamNH.html" class="dropdown-item">Pelham</a>
+                        <a href="StampedConcretePembrokeNH.html" class="dropdown-item">Pembroke</a>
+                        <a href="StampedConcretePlaistowNH.html" class="dropdown-item">Plaistow</a>
+                        <a href="StampedConcreteRaymondNH.html" class="dropdown-item">Raymond</a>
+                        <a href="StampedConcreteSalemNH.html" class="dropdown-item">Salem</a>
+                        <a href="StampedConcreteSandownNH.html" class="dropdown-item">Sandown</a>
+                        <a href="StampedConcreteStrathamNH.html" class="dropdown-item">Stratham</a>
+                        <a href="StampedConcreteWindhamNH.html" class="dropdown-item">Windham</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="thanks-hero">
+        <div class="hero-content">
+            <div class="success-checkmark">
+                <i class="fas fa-check"></i>
+            </div>
+            <h1>Thank <span>You!</span></h1>
+            <p>Your message has been successfully received. We appreciate your interest in Northeast Decorative
+                Concrete, LLC.</p>
+        </div>
+    </section>
+
+    <!-- Confirmation Details -->
+    <section class="section bg-light">
+        <div class="container animate-on-scroll">
+            <div class="confirmation-card">
+                <h2>We've Got Your Information</h2>
+                <p>Thank you for reaching out to us! A member of our team will review your inquiry and
+                    <span class="highlight">get back to you as soon as possible</span> — typically within
+                    <span class="highlight">24 business hours</span>. We look forward to discussing how we can bring
+                    your vision to life.
+                </p>
+
+                <!-- What to Expect -->
+                <div class="expect-section">
+                    <h3>What Happens Next?</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-envelope-open-text"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>We Review Your Message</h4>
+                                <p>Our team carefully reads every inquiry to understand your project needs and goals.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>We Reach Out to You</h4>
+                                <p>Expect a call or email from us within 24 business hours to discuss your project in
+                                    detail.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Free On-Site Consultation</h4>
+                                <p>We'll schedule a convenient time to visit your property, take measurements, and
+                                    provide a detailed, no-obligation estimate.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Immediate Contact -->
+            <div style="text-align: center; margin-top: 2.5rem;">
+                <p style="color: var(--concrete); margin-bottom: 1rem; font-size: 1.05rem;">Need to reach us sooner?
+                    Don't hesitate to call or email directly.</p>
+                <div class="contact-bar">
+                    <a href="tel:18887565377"><i class="fas fa-phone"></i> 1 (888) 756-5377</a>
+                    <a href="mailto:info@northeastdecorativeconcrete.com"><i class="fas fa-envelope"></i>
+                        info@northeastdecorativeconcrete.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Back to Site -->
+    <section class="section">
+        <div class="container animate-on-scroll">
+            <div class="text-center">
+                <h2 class="section-title">Continue Exploring</h2>
+                <p class="section-subtitle">While you wait, take a look around our site to learn more about our work and
+                    services.</p>
+            </div>
+
+            <div class="nav-cards">
+                <a href="services.html" class="nav-card" id="nav-services">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h4>Our Services</h4>
+                    <p>Explore our full range of stamped concrete solutions for patios, walkways, pool decks, and
+                        more.</p>
+                    <span class="card-link">View Services <i class="fas fa-arrow-right"></i></span>
+                </a>
+
+                <a href="areas-we-service.html" class="nav-card" id="nav-areas">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h4>Areas We Service</h4>
+                    <p>See the communities across New Hampshire where we proudly deliver our craftsmanship.</p>
+                    <span class="card-link">View Areas <i class="fas fa-arrow-right"></i></span>
+                </a>
+
+                <a href="about.html" class="nav-card" id="nav-about">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>About Us</h4>
+                    <p>Learn about our 40+ years of experience and why families trust us with their homes.</p>
+                    <span class="card-link">Our Story <i class="fas fa-arrow-right"></i></span>
+                </a>
+
+                <a href="index.html" class="nav-card" id="nav-home">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h4>Back to Home</h4>
+                    <p>Return to our homepage to see our latest work and featured projects.</p>
+                    <span class="card-link">Go Home <i class="fas fa-arrow-right"></i></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Northeast Decorative Concrete, LLC</h4>
+                <p style="color: #d6d3d1; margin-bottom: 1rem;">Premium stamped concrete solutions for residential and
+                    commercial properties.</p>
+                <div style="display: flex; gap: 1rem; font-size: 1.25rem;">
+                    <a href="https://www.facebook.com/NortheastDecorativeConcreteLlc" aria-label="Facebook"
+                        target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/northeastdecorativeconcretellc" aria-label="Instagram"
+                        target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.pinterest.com/stampedconcretenh" aria-label="Pinterest" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-pinterest"></i></a>
+                    <a href="https://www.youtube.com/channel/UCzEO0WipUKjQ3zF9DRwpJLg" aria-label="YouTube"
+                        target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="areas-we-service.html">Areas We Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li><i class="fas fa-phone mr-2" style="margin-right: 0.5rem; color: var(--primary);"></i> 1 (888)
+                        756-5377</li>
+                    <li><i class="fas fa-envelope mr-2" style="margin-right: 0.5rem; color: var(--primary);"></i>
+                        info@northeastdecorativeconcrete.com</li>
+                    <li><i class="fas fa-map-marker-alt mr-2" style="margin-right: 0.5rem; color: var(--primary);"></i>
+                        Serving NH, MA, ME</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Northeast Decorative Concrete, LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>
